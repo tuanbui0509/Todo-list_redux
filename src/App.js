@@ -95,16 +95,7 @@ class App extends Component {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
-  onUpdateToDo = (id) => {
-    let { tasks } = this.state;
-    let index = this.findIndex(id);
-    let taskEditing = tasks[index];
-    this.setState({
-      taskEditing: taskEditing
-    })
 
-    this.onShowForm();
-  }
 
   onChangeFilter = (filterName, filterStatus) => {
     filterStatus = parseInt(filterStatus, 10);
@@ -177,10 +168,10 @@ class App extends Component {
     //   });
     // }
 
-    let elmTaskForm = isDisplayForm ?
-      <TaskForm
-        taskEditing={taskEditing}
-      /> : '';
+    // let elmTaskForm = isDisplayForm ?
+    //   <TaskForm
+    //     taskEditing={taskEditing}
+    //   /> : '';
     return (
       <div className="container">
         <div className="text-center">
@@ -189,7 +180,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className={isDisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : "col-xs-0 col-sm-0 col-md-0 col-lg-0"}>
-            {elmTaskForm}
+          <TaskForm taskEditing={taskEditing} />
           </div>
           <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
             <button
@@ -210,8 +201,7 @@ class App extends Component {
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <TaskList
-                  onDeleteTodo={this.onDeleteTodo}
-                  onUpdateToDo={this.onUpdateToDo}
+                  // onUpdateToDo={this.onUpdateToDo}
                   onChangeFilter={this.onChangeFilter}
                 ></TaskList>
               </div>

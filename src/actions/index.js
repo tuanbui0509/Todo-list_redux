@@ -31,10 +31,23 @@ export const openForm = () => {
 }
 
 export const updateStatus = (id) => {
-    return{
+    return {
         type: types.UPDATE_STATUS,
         id // id:id
     }
 }
 
+export const deleteTask = (id) => {
+    return {
+        type:types.DELETE_TASK,
+        id
+    }
+}
+
+export const editTask = (task) => {
+    return {
+        type:types.EDIT_TASK,
+        task
+    }
+}
 // export default actions;
