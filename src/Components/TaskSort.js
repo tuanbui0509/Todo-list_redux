@@ -16,15 +16,14 @@ class TaskSort extends Component {
                             <li
                                 onClick={() => this.onClick('name', 1)}
                             >
-                                <a
-                                    role="button"
+                                <a  href="/" role="button"
                                     className={(this.props.sortBy === 'name' && this.props.sortValue === 1) ? 'sort_selected' : ''}
                                 >
                                     <span className="fa fa-sort-alpha-asc pr-5"> Tên A-Z </span>
                                 </a>
                             </li>
                             <li onClick={() => this.onClick('name', -1)}>
-                                <a role="button"
+                                <a  href="/" role="button"
                                     className={(this.props.sortBy === 'name' && this.props.sortValue === -1) ? 'sort_selected' : ''}
 
                                 >
@@ -33,9 +32,9 @@ class TaskSort extends Component {
                             </li>
                             <li role="separator" className="divider" />
 
-                            <li onClick={() => this.onClick('status', 1)}><a role="button" className={(this.props.sortBy === 'status' && this.props.sortValue === 1) ? 'sort_selected' : ''}>Trạng Thái Kích Hoạt</a></li>
+                            <li onClick={() => this.onClick('status', 1)}><a  href="/" role="button" className={(this.props.sortBy === 'status' && this.props.sortValue === 1) ? 'sort_selected' : ''}>Trạng Thái Kích Hoạt</a></li>
 
-                            <li onClick={() => this.onClick('status', -1)}><a role="button" className={(this.props.sortBy === 'status' && this.props.sortValue === -1) ? 'sort_selected' : ''}>Trạng Thái Ẩn</a></li>
+                            <li onClick={() => this.onClick('status', -1)}><a  href="/" role="button" className={(this.props.sortBy === 'status' && this.props.sortValue === -1) ? 'sort_selected' : ''}>Trạng Thái Ẩn</a></li>
                         </ul>
                     </div>
                 </div>
