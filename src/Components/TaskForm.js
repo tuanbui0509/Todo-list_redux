@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import*as actions from './../actions/index';
+import { connect } from 'react-redux'
+import *as actions from './../actions/index';
+
 class TaskForm extends Component {
 
     constructor(props) {
@@ -65,7 +66,7 @@ class TaskForm extends Component {
             })
         }
         // taskEditing not exit then create new todo
-        else if(!nextProps.taskEditing){
+        else if (!nextProps.taskEditing) {
             this.setState({
                 id: '',
                 name: '',
@@ -131,19 +132,22 @@ class TaskForm extends Component {
     }
 }
 
-const mapStateToProps=(state)=>{
-    return{
+const mapStateToProps = (state) => {
+    return {
 
     }
 };
 
-const mapDispatchToProps=(dispatch,props)=>{
-    return{
-        onAddTask:(task)=>{
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddTask: (task) => {
             dispatch(actions.addTask(task));
+        },
+        onCloseForm: () => {
+            dispatch(actions.closeForm());
         }
     }
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);

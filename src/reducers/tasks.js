@@ -7,7 +7,17 @@ let s4 = () => {
 let randomID = () => {
     return s4() + s4() + s4() + s4(); // Example => 'e014026082e6237b'
 }
+
+const findIndex = (tasks, id) => {
+    let result = -1;
+    tasks.forEach((task, idx) => {
+        if (task.id === id) result = idx;
+    });
+    return result;
+}
+// Lay du lieu tren local stored
 let data = JSON.parse(localStorage.getItem('tasks'));
+// Gan gia tri vao cho initialState ha
 let initialState = data ? data : [];
 
 let myReducer = (state = initialState, action) => {
@@ -20,8 +30,18 @@ let myReducer = (state = initialState, action) => {
                 name: action.task.name,
                 status: action.task.status === 'false' ? false : true,
             }
-            console.log(newTask);
-            localStorage.setItem('tasks',JSON.stringify(state));
+            state.push(newTask);
+            console.log(state);
+            localStorage.setItem('tasks', JSON.stringify(state));
+            return [...state];
+        case types.UPDATE_STATUS:
+            let id = action.id;
+            let index = findIndex(state, id);
+            state[index] = {
+                ...state[index],
+                status: !state[index].status
+            };
+            localStorage.setItem('tasks', JSON.stringify(state));
             return [...state];
         default:
             return state;
