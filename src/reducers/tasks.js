@@ -21,24 +21,28 @@ let data = JSON.parse(localStorage.getItem('tasks'));
 let initialState = data ? data : [];
 
 let myReducer = (state = initialState, action) => {
-    let id ,index;
+    let id, index;
     switch (action.type) {
         case types.LIST_ALL:
             return state;
-        case types.ADD_TASK:
-            let newTask = {
-                id: randomID(),
+        case types.SAVE_TASK:
+            let task = {
+                id: action.task.id,
                 name: action.task.name,
                 status: action.task.status,
             }
-            console.log(action.task.status);
-            state.push(newTask);
-            
+            if (!task.id) {
+                task.id = randomID();
+                state.push(task);
+            } else {
+                index = findIndex(state, task.id);
+                state[index] = task;
+            }
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...state];
         case types.UPDATE_STATUS:
-             id = action.id;
-             index = findIndex(state, id);
+            id = action.id;
+            index = findIndex(state, id);
             state[index] = {
                 ...state[index],
                 status: !state[index].status
@@ -47,10 +51,10 @@ let myReducer = (state = initialState, action) => {
             return [...state];
         case types.DELETE_TASK:
             id = action.id;
-            index = findIndex(state,id);
-            state.splice(index,1);
-            localStorage.setItem('tasks',JSON.stringify(state));
-             return [...state];
+            index = findIndex(state, id);
+            state.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(state));
+            return [...state];
         default:
             return state;
     }

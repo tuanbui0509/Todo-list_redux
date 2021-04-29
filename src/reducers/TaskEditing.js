@@ -1,6 +1,10 @@
 import *as types from '../constants/actionTypes'
 // Gan gia tri vao cho initialState close form
-let initialState = {};
+let initialState = {
+    id: '',
+    name: '',
+    status: false
+};
 
 let myReducer = (state = initialState, action) => {
     switch (action.type) {

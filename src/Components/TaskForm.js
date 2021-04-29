@@ -33,7 +33,7 @@ class TaskForm extends Component {
         //unload website
         event.preventDefault();
         // this.props.onSubmit(this.state);
-        this.props.onAddTask(this.state);
+        this.props.onSaveTask(this.state);
         //cancel and close form
         this.onClear();
         this.onCloseForm();
@@ -47,13 +47,16 @@ class TaskForm extends Component {
     }
     componentWillMount() {
         //if exits taskEditing update data
-        if (this.props.taskEditing) {
+        if (this.props.taskEditing && this.props.taskEditing.id !== null) {
             this.setState({
                 id: this.props.taskEditing.id,
                 name: this.props.taskEditing.name,
                 status: this.props.taskEditing.status,
             })
+        } else {
+            this.onClear();
         }
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -77,7 +80,7 @@ class TaskForm extends Component {
 
     render() {
         let { id } = this.state;
-        if (!this.props.isDisplayForm) return '';
+        if (!this.props.isDisplayForm) return null;
         return (
             <div className="panel panel-warning">
                 <div className="panel-heading">
@@ -135,14 +138,15 @@ class TaskForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isDisplayForm: state.isDisplayForm
+        isDisplayForm: state.isDisplayForm,
+        taskEditing: state.taskEditing
     }
 };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddTask: (task) => {
-            dispatch(actions.addTask(task));
+        onSaveTask: (task) => {
+            dispatch(actions.saveTask(task));
         },
         onCloseForm: () => {
             dispatch(actions.closeForm());
