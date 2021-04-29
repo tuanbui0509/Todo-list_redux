@@ -39,15 +39,21 @@ export const updateStatus = (id) => {
 
 export const deleteTask = (id) => {
     return {
-        type:types.DELETE_TASK,
+        type: types.DELETE_TASK,
         id
     }
 }
 
 export const editTask = (task) => {
     return {
-        type:types.EDIT_TASK,
+        type: types.EDIT_TASK,
         task
     }
 }
-// export default actions;
+
+export const filterTable = (filter) => {
+    return {
+        type: types.FILTER_TABLE,
+        filter// filter name and filter status
+    }
+}

@@ -38,16 +38,6 @@ class App extends Component {
 
   }
 
-
-  onChangeFilter = (filterName, filterStatus) => {
-    filterStatus = parseInt(filterStatus, 10);
-    this.setState({
-      filter: {
-        name: filterName.toLowerCase(),
-        status: filterStatus
-      }
-    })
-  }
   searchKeyWord = (keyWord) => {
     this.setState({
       keyWord: keyWord
@@ -66,27 +56,7 @@ class App extends Component {
       //  filter, keyWord, 
       sortBy, sortValue } = this.state; //let tasks = this.state.tasks
     let { isDisplayForm } = this.props;
-    // if (keyWord) {
-    //   tasks = tasks.filter((task) => {
-    //     return task.name.toLowerCase().indexOf(keyWord) !== -1;
-    //   });
-    // }
-    // if (filter) {
-    //   if (filter.name) {
-    //     tasks = tasks.filter((task) => {
-    //       return task.name.toLowerCase().indexOf(filter.name) !== -1;
-    //     });
-    //   }
-
-    //   tasks = tasks.filter((task) => {
-    //     if (filter.status === -1) {
-    //       return task;
-    //     }
-    //     else {
-    //       return task.status === (filter.status === 1 ? true : false);
-    //     }
-    //   });
-    // }
+   
 
     // if (sortBy === 'name') {
     //   // if (sortValue === 1) {
@@ -140,9 +110,7 @@ class App extends Component {
             />
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList
-                  onChangeFilter={this.onChangeFilter}
-                ></TaskList>
+                <TaskList/>
               </div>
             </div>
           </div>
