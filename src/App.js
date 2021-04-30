@@ -11,22 +11,6 @@ import { connect } from 'react-redux'
 import *as actions from './actions/index'
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      sortBy: 'name',
-      sortValue: 1,
-      filter: {
-        name: '',
-        status: -1
-      },
-      keyWord: ''
-
-    }
-  }
-
-
-
   onToggleForm = () => {
     let { taskEditing } = this.props;
     if (taskEditing && taskEditing.id !== '') {
@@ -38,50 +22,9 @@ class App extends Component {
 
   }
 
-  searchKeyWord = (keyWord) => {
-    this.setState({
-      keyWord: keyWord
-    })
-  }
-
-  onSort = (sortBy, sortValue) => {
-    this.setState({
-      sortBy: sortBy,
-      sortValue: sortValue
-    })
-  }
-
   render() {
-    let {
-      //  filter, keyWord, 
-      sortBy, sortValue } = this.state; //let tasks = this.state.tasks
     let { isDisplayForm } = this.props;
    
-
-    // if (sortBy === 'name') {
-    //   // if (sortValue === 1) {
-    //   //   tasks.reverse();
-    //   // }else{
-    //   //   tasks.sort();
-    //   // }
-    //   tasks.sort((a, b) => {
-    //     if (a.name < b.name) return sortValue;
-    //     else if (a.name > b.name) return -sortValue;
-    //     else return 0;
-    //   });
-
-    // } else {
-    //   tasks.sort((a, b) => {
-    //     if (a.status < b.status) return sortValue;
-    //     else if (a.status > b.status) return - sortValue;
-    //     else return 0;
-    //   });
-    // }
-
-    // let elmTaskForm = isDisplayForm ?
-    //   <TaskForm
-    //     taskEditing={taskEditing}
-    //   /> : '';
     return (
       <div className="container">
         <div className="text-center">
@@ -97,17 +40,11 @@ class App extends Component {
               type="button"
               className="btn btn-primary mr-5"
               onClick={this.onToggleForm}
-
             >
               <span className="fa fa-plus mr-5" />Thêm Công Việc
         </button>
 
-            <TaskControl
-              searchKeyWord={this.searchKeyWord}
-              onSort={this.onSort}
-              sortBy={sortBy}
-              sortValue={sortValue}
-            />
+            <TaskControl/>
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <TaskList/>

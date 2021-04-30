@@ -33,12 +33,17 @@ class TaskList extends Component {
   }
 
   render() {
-    let { tasks, filterTable } = this.props;
-    console.log(filterTable);
+    let { tasks, filterTable, keyWord, sort } = this.props;
+    console.log(sort)
     let { filterName, filterStatus } = this.state;
+
+    tasks = tasks.filter((task) => {
+      return task.name.toUpperCase().indexOf(keyWord.toUpperCase()) !== -1;
+    });
+
     if (filterTable.name) {
       tasks = tasks.filter((task) => {
-        return task.name.toLowerCase().indexOf(filterTable.name) !== -1;
+        return task.name.toLowerCase().indexOf(filterTable.name.toLowerCase()) !== -1;
       });
     }
     tasks = tasks.filter((task) => {
@@ -49,6 +54,22 @@ class TaskList extends Component {
         return task.status === (filterTable.status === 1 ? true : false);
       }
     });
+    // ============== SORT ====================
+    if (sort.by === 'name') {
+      tasks.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return sort.value;
+        else if (a.name.toLowerCase() < b.name.toLowerCase()) return -sort.value;
+        else return 0;
+      });
+
+    } else {
+      tasks.sort((a, b) => {
+        if (a.status > b.status) return -sort.value;
+        else if (a.status < b.status) return sort.value;
+        else return 0;
+      });
+    }
+
 
     let elementTask = tasks.map((task, index) => {
       return <TaskItem
@@ -110,7 +131,9 @@ class TaskList extends Component {
 const mapStateProps = (state) => {
   return {
     tasks: state.tasks,
-    filterTable: state.filterTable
+    filterTable: state.filterTable,
+    keyWord: state.searchTask,
+    sort: state.sortTask
   };
 }
 

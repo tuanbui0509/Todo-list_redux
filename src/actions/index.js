@@ -57,3 +57,18 @@ export const filterTable = (filter) => {
         filter// filter name and filter status
     }
 }
+
+
+export const searchTask = (keyword) => {
+    return {
+        type: types.SEARCH,
+        keyword: keyword    
+    }
+}
+
+export const sortTask = (sort) => {
+    return {
+        type: types.SORT,
+        sort  
+    }
+}
