@@ -8,7 +8,6 @@ class TaskControl extends Component {
                 <div>
                     <TaskSearch/>
                     <TaskSort/>
-
                 </div>
             </div>
         );

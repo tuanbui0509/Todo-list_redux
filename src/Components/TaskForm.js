@@ -32,7 +32,6 @@ class TaskForm extends Component {
     onSubmit = (event) => {
         //unload website
         event.preventDefault();
-        // this.props.onSubmit(this.state);
         this.props.onSaveTask(this.state);
         //cancel and close form
         this.onClear();
@@ -45,8 +44,9 @@ class TaskForm extends Component {
             status: false
         })
     }
+    // khởi tạo ban đầu
     componentWillMount() {
-        //if exits taskEditing update data
+        //if exits taskEditing setState()
         if (this.props.taskEditing && this.props.taskEditing.id !== null) {
             this.setState({
                 id: this.props.taskEditing.id,
@@ -58,7 +58,7 @@ class TaskForm extends Component {
         }
 
     }
-
+    // khi thay đổi giá trị
     componentWillReceiveProps(nextProps) {
         // taskEditing exit replace data
         if (nextProps && nextProps.taskEditing) {

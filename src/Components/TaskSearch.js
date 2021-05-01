@@ -22,7 +22,7 @@ class TaskSearch extends Component {
     }
 
     onSearchKeyWord = () => {
-       this.props.onSearch(this.state.keyWord);
+        this.props.onSearch(this.state.keyWord);
     }
     render() {
         return (
@@ -56,17 +56,16 @@ class TaskSearch extends Component {
 
 const mapStateToProps = state => {
     return {};
-  }
-  
-  const mapDispatchToProps = (dispatch, props) => {
+}
+
+const mapDispatchToProps = (dispatch, props) => {
     return {
-      onSearch: (keyWord) => {
-        dispatch(actions.searchTask(keyWord));
-      },
-      
-  
+        onSearch: (keyWord) => {
+            dispatch(actions.searchTask(keyWord));
+        },
+
+
     };
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(TaskSearch);
-  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskSearch);

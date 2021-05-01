@@ -28,24 +28,22 @@ class TaskList extends Component {
     this.setState({
       [name]: value
     })
-
-
   }
 
   render() {
     let { tasks, filterTable, keyWord, sort } = this.props;
-    console.log(sort)
     let { filterName, filterStatus } = this.state;
-
+    //============== Search ==============
     tasks = tasks.filter((task) => {
       return task.name.toUpperCase().indexOf(keyWord.toUpperCase()) !== -1;
     });
-
+    //============== Filter name ==============
     if (filterTable.name) {
       tasks = tasks.filter((task) => {
         return task.name.toLowerCase().indexOf(filterTable.name.toLowerCase()) !== -1;
       });
     }
+    //============== Filter status ==============
     tasks = tasks.filter((task) => {
       if (filterTable.status === -1) {
         return task;
@@ -54,7 +52,7 @@ class TaskList extends Component {
         return task.status === (filterTable.status === 1 ? true : false);
       }
     });
-    // ============== SORT ====================
+    // ============== Sort A-Z, Z-A, Status ==============
     if (sort.by === 'name') {
       tasks.sort((a, b) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) return sort.value;
@@ -70,7 +68,7 @@ class TaskList extends Component {
       });
     }
 
-
+    // ============== output array ==============
     let elementTask = tasks.map((task, index) => {
       return <TaskItem
         key={task.id}
@@ -118,7 +116,6 @@ class TaskList extends Component {
               </td>
               <td />
             </tr>
-            {/* Item */}
             {elementTask}
           </tbody>
         </table>

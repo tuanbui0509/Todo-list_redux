@@ -3,14 +3,13 @@ import TaskForm from './Components/TaskForm'
 import TaskControl from './Components/TaskControl'
 import TaskList from './Components/TaskList';
 import './App.css';
-// import _ from 'lodash'
-// import demo from './trainning/demo';
+// connect redux
 import { connect } from 'react-redux'
-
 // actions
 import *as actions from './actions/index'
 class App extends Component {
 
+  // đóng mở form thêm sửa
   onToggleForm = () => {
     let { taskEditing } = this.props;
     if (taskEditing && taskEditing.id !== '') {
@@ -19,7 +18,6 @@ class App extends Component {
       this.props.onToggleForm();
     }
     this.props.onClearTask('');
-
   }
 
   render() {
@@ -59,7 +57,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    // props từ reducer
+    // props từ reducer mapping
     isDisplayForm: state.isDisplayForm,
     taskEditing: state.taskEditing
   };
@@ -76,7 +74,6 @@ const mapDispatchToProps = (dispatch, props) => {
     onOpenForm: () => {
       dispatch(actions.openForm());
     }
-
   };
 }
 
